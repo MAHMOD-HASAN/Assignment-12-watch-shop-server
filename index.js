@@ -14,10 +14,11 @@ app.use(express.json());
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.yfgcp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-console.log(uri);
+
 
 async function run () {
     try {
+        // connection between database and server
         await client.connect();
         const database = client.db('WatchShop');
         const productCollection = database.collection('watches');
@@ -49,7 +50,7 @@ async function run () {
             const product = await productCollection.findOne(query);
             res.json(product);
         })
-                // FINISH FIRST STEP
+                // FINISH PRODUCT PART
 //==================================================================================
 
 
@@ -110,7 +111,7 @@ async function run () {
             }
             res.json({admin : isAdmin})
         })
-                 // FINISH SECOND STEP
+                 // FINISH USER PART
 //===================================================================================
 
 
@@ -156,7 +157,7 @@ async function run () {
             const result = await orderCollection.deleteOne(query);
             res.json(result);
         })
-                      // FINISH THIRE STEP
+                      // FINISH ORDER PART
 //==================================================================================
 
 
@@ -175,8 +176,8 @@ async function run () {
         })
 
     }
-
-
+           // FINISH REVIEW PART
+//===================================================================================
 
     finally {
         // await client.close();
