@@ -167,6 +167,13 @@ async function run () {
             res.json(result);
         })
 
+        // get all feedback and show UI
+        app.get('/review', async (req, res) => {
+            const review = reviewCollection.find({});
+            const result = await review.toArray();
+            res.send(result);
+        })
+
     }
 
 
